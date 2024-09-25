@@ -97,7 +97,6 @@ function run(event) {
             createInfoLine(`Tabcash: ${response.data.tabcash}`)
 
             response = response.data.features
-            console.log(response)
 
             for (let feature in response) {
                 createFeatureLine(features[response[feature]])
