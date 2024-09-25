@@ -22,26 +22,60 @@ function run(event) {
     event.preventDefault();
 
     const features = {
-        "read:session": "Ler sessão",
-        "create:session": "Criar sessão",
-        "create:content": "Publicar conteúdos",
-        "create:content:text_root": "Publicar conteúdos raízes",
-        "create:content:text_child": "Publicar conteúdos filhos (comentários)",
-        "update:content": "Atualizar conteúdos",
+        // USER
+        "create:user": "Criar usuário",
+        "read:user": "Ler usuário",
+        "read:user:self": "Ler próprio usuário",
         "update:user": "Atualizar usuário",
+
+        // MIGRATION
         "read:migration": "Ler migrações",
         "create:migration": "Criar migrações",
-        "update:content:others": "Editar conteúdos de outros usuários",
-        "ban:user": "Banir usuários",
+
+        // ACTIVATION_TOKEN
+        "read:activation_token": "Ler token de ativação",
+
+        // RECOVERY_TOKEN
+        "read:recovery_token": "Ler token de recuperação",
+
+        // EMAIL_CONFIRMATION_TOKEN
+        "read:email_confirmation_token": "Ler token de confirmação de email",
+
+        // SESSION
+        "create:session": "Criar sessão",
+        "read:session": "Ler sessão",
+
+        // CONTENT
+        "read:content": "Ler conteúdo",
+        "update:content": "Atualizar conteúdo",
+        "create:content": "Publicar conteúdo",
+        "create:content:text_root": "Publicar conteúdos raizes",
+        "create:content:text_child": "Publicar conteúdos filhos (comentários)",
+        "read:content:list": "Ler lista de conteúdos",
+        "read:content:tabcoins": "Ler Tabcoins de conteúdo",
+
+        // MODERATION
+        "read:user:list": "Ler lista de usuários",
+        "read:votes:others": "Ler votos de outros",
+        "update:content:others": "Atualizar conteúdo de outros",
+        "update:user:others": "Atualizar usuário de outros",
+        "ban:user": "Banir usuário",
+        "create:recovery_token:username": "Criar token de recuperação por username",
+        "read:firewall": "Ler firewall",
+        "review:firewall": "Revisar firewall",
+
+        // BANNED
         "nuked": "Usuário banido",
-        "create:recovery_token:username": "Solicitar recuperação de senha apenas com o username"
+
+        // ADVERTISEMENT
+        "read:ad:list": "Ler lista de classificados",
     }
-    
+
     var username = usernameField.value;
-    if (username.trim().length==0){
+    if (username.trim().length == 0) {
         alert("Digite o nome do usuário!")
         usernameField.focus()
-        return 
+        return
     }
 
     submitButton.classList.add('bloqued')
@@ -63,6 +97,7 @@ function run(event) {
             createInfoLine(`Tabcash: ${response.data.tabcash}`)
 
             response = response.data.features
+            console.log(response)
 
             for (let feature in response) {
                 createFeatureLine(features[response[feature]])
